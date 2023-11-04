@@ -66,14 +66,15 @@ class App extends Component {
 
   render() {
     const { images, isLoading, showModal, largeImageURL } = this.state;
+    const isButtonVisible = images.length >= 12;
 
     return (
       <div className={css.App}>
         <Searchbar onSubmit={this.handleQuerySubmit} />
         <ImageGallery images={images} onImageClick={this.openModal} />
         {isLoading && <Loader />}
-        {images.length > 0 && !isLoading && (
-          <Button onClick={this.handleLoadMore} />
+        {isButtonVisible && !isLoading && (
+          <Button onClick={this.handleLoadMore} isButtonVisible={isButtonVisible} />
         )}
         {showModal && (
           <Modal
