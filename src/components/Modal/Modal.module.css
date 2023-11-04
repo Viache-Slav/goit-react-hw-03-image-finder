@@ -22,7 +22,3 @@
   object-fit: contain;
   transition: transform 0.3s ease-in-out;
 }
-
-.Expanded {
-  transform: scale(2.2); 
-} 
