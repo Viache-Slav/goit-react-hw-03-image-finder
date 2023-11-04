@@ -1,22 +1,33 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import css from 'components/Modal/Modal.module.css'
 
 const Modal = ({ largeImageURL, onClose }) => {
   const [isImageExpanded, setIsImageExpanded] = useState(false);
 
   const handleImageClick = () => {
-    console.log('Image clicked');
     setIsImageExpanded(!isImageExpanded);
   };
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [onClose]);
 
   return (
     <div className={css.Overlay} onClick={onClose}>
       <div className={css.Modal}>
-        <img
+        <img className={css.Image}
           src={largeImageURL}
           alt="modal"
-          className={`${css.Image} ${isImageExpanded ? css.Expanded : ''}`}
           onClick={handleImageClick}
         />
       </div>

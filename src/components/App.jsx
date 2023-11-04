@@ -50,7 +50,7 @@ class App extends Component {
   };
 
   // Funkcja do otwierania modalu z większym obrazkiem
-  openModal = largeImageURL => {
+  openModal = ({largeImageURL}) => {
     this.setState({ largeImageURL, showModal: true });
   };
 
